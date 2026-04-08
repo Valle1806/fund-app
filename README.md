@@ -1,59 +1,61 @@
-# FundApp
+# BTG Pactual - Gestión de Fondos (Prueba Técnica)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.22.
+Esta plataforma de gestión de fondos de inversión para **BTG Pactual** ha sido desarrollada bajo estándares de arquitectura limpia y reactividad avanzada, aprovechando las últimas capacidades de **Angular 20**.
 
-## Development server
+---
 
-To start a local development server, run:
+##  Arquitectura y Patrones (Senior Level)
 
-```bash
-ng serve
-```
+El proyecto destaca por una implementación híbrida que demuestra versatilidad técnica y adaptabilidad:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Pattern Facade (Fachada):** Se implementó una capa de abstracción (`FinanceFacade`) como único punto de entrada para los componentes. Esto desacopla la lógica de negocio de la interfaz de usuario, facilitando el testing unitario y la mantenibilidad a largo plazo.
+* **Interoperabilidad RxJS + Signals:**
+    * **Observables (Requisito):** Uso de `Observables` para el manejo de flujos de datos asíncronos y eventos de red, cumpliendo estrictamente con los requisitos técnicos de la prueba.
+    * **Signals (Modern Standard):** Integración de `toSignal` y `computed` para transformar flujos asíncronos en estados granulares. Esto garantiza una detección de cambios ultra eficiente y una sintaxis limpia en los templates.
+* **Declarative Programming:** Se priorizó el uso de `async pipe` y `Signals` para evitar el manejo manual de suscripciones (`.subscribe()`), eliminando el riesgo de fugas de memoria (*memory leaks*).
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+##  Stack Tecnológico
 
-```bash
-ng generate component component-name
-```
+* **Angular 20:** Arquitectura Standalone y el nuevo *Control Flow* (`@if`, `@for`).
+* **Tailwind CSS:** Design System escalable basado en variables de entorno y capas personalizadas (`@layer`).
+* **Lucide Angular:** Set de iconografía optimizado y cargado bajo demanda (*tree-shaking*).
+* **LocalStorage Engine:** Motor de persistencia reactivo para mantener el estado de la cuenta.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+##  Requisitos de Negocio Implementados
 
-## Building
+1.  **Balance Inicial:** Control de saldo inicial de **$500.000 COP**.
+2.  **Validación de Negocio:** Sistema de detección de saldo insuficiente antes de la vinculación (**Requisito 6**).
+3.  **Monto Mínimo:** Validación dinámica por fondo según sus reglas específicas de inversión.
+4.  **Notificaciones Globales:** Sistema de *Toasts* en español para feedback inmediato de todas las operaciones.
+5.  **Historial de Transacciones:** Registro persistente de cada apertura y cancelación de fondos.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Instalación y Uso
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Sigue estos pasos para ejecutar el proyecto localmente:
 
-## Running unit tests
+Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
+2. **Servidor de desarrollo:**
+     ```bash
+   ng serve
+   ```
+3. **Acceso:**
+    El proyecto estará disponible en http://localhost:4200
 
-```bash
-ng test
-```
+## Notas para el Evaluador
+* Botón de Reset: Se incluyó un acceso rápido en el Header (icono de reinicio) que limpia el localStorage y restablece el balance inicial. Esto permite repetir los flujos de prueba sin necesidad de limpiar manualmente los datos del navegador.
 
-## Running end-to-end tests
+* Localización: El código fuente, nombres de variables y arquitectura siguen el estándar internacional (Inglés), mientras que la interfaz de usuario y los mensajes de error/éxito están totalmente en Español.
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* Simulación de Latencia: Las suscripciones cuentan con un delay intencional para demostrar el manejo de estados de carga (loading spinners) y la prevención de acciones concurrentes mediante el estado isSending.
+   
