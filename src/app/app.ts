@@ -1,11 +1,12 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { CopCurrencyPipe } from './core/pipes/cop-currency/cop-currency-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive, CurrencyPipe, LucideAngularModule],
+  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive, CopCurrencyPipe, LucideAngularModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
