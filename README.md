@@ -57,7 +57,7 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
 
 ## Pruebas Unitarias y Calidad
 
-Para verificar la estabilidad del proyecto y la lógica de negocio, se incluyó una suite de pruebas con **Jasmine** y **Angular Testing Library**.
+Para verificar la estabilidad del proyecto y la lógica de negocio, se incluyó una suite de pruebas con **Jasmine** y **Angular Testing Library** en algunos componentes.
 
 Para ejecutar los tests y generar el reporte de cobertura:
 ```bash
