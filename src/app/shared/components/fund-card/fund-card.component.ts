@@ -4,7 +4,7 @@ import { BadgeComponent } from '../badge/badge.component';
 import { CopCurrencyPipe } from '../../../core/pipes/cop-currency/cop-currency-pipe';
 import { Fund } from '../../../core/models/fund.model';
 /**
- * Componente de tarjeta de fondo (dumb/presentational).
+ * Componente de tarjeta de fondo (presentational).
  * 
  * Su único trabajo es mostrar la información del fondo: categoría, nombre,
  * inversión mínima y si el usuario ya está suscrito.  
@@ -57,7 +57,7 @@ import { Fund } from '../../../core/models/fund.model';
           </button>
         } @else {
           <button (click)="subscribe.emit(fund())" class="btg-btn btg-btn-primary btg-btn-full">
-            Subscribirse
+            Subscribime
           </button>
         }
       </div>
