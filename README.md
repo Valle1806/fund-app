@@ -45,6 +45,11 @@ El proyecto aplica principios de organización LIFT (Locate, Identify, Flat, T-D
 
 ---
 
+### Requisitos previos
+* **Node.js:** v20.19.2 (LTS) o superior
+* **Package Manager:** npm v10.x o superior
+
+---
 ## Instalación y Uso
 
 Sigue estos pasos para ejecutar el proyecto localmente:
@@ -62,7 +67,19 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
 3. **Acceso:**
     El proyecto estará disponible en http://localhost:4200
 
-   
+---
+
+## Pruebas Unitarias y Calidad
+
+Para verificar la estabilidad del proyecto y la lógica de negocio, se incluyó una suite de pruebas con **Jasmine** y **Angular Testing Library**.
+
+Para ejecutar los tests y generar el reporte de cobertura:
+```bash
+npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
+```
+
+---
+
 ## Capturas de funcionamiento
 
 Lista de fondos:
@@ -97,4 +114,5 @@ En esta vista se cumple:
 * Localización: El código fuente, nombres de variables y arquitectura siguen el estándar internacional (Inglés), mientras que la interfaz de usuario y los mensajes de error/éxito están totalmente en Español.
 
 * Simulación de Latencia: Las suscripciones cuentan con un delay intencional para demostrar el manejo de estados de carga (loading spinners) y la prevención de acciones concurrentes mediante el estado isSending.
+
    
