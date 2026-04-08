@@ -16,6 +16,16 @@ El proyecto destaca por una implementación híbrida que demuestra versatilidad 
 
 ---
 
+### Estructura de Carpetas: LIFT & Feature-First
+
+El proyecto aplica principios de organización LIFT (Locate, Identify, Flat, T-Dry) y se estructura siguiendo un enfoque **Feature-First / Vertical Slice**, priorizando la independencia de cada dominio funcional:
+
+- **core/**: Lógica única y global (servicios singleton, estado global, modelos, validadores). Es el "cerebro" de la app.
+- **shared/**: Componentes visuales y reutilizables (“Dumb Components”), desacoplados de la lógica de negocio.
+- **features/**: Dominios funcionales independientes (ej. `funds`, `transactions`). Cada carpeta contiene sus propios componentes y páginas, facilitando escalabilidad y mantenimiento.
+
+---
+
 ##  Stack Tecnológico
 
 * **Angular 20:** Arquitectura Standalone y el nuevo *Control Flow* (`@if`, `@for`).
