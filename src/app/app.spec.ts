@@ -1,10 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { LucideAngularModule, RotateCcw, TrendingUp, History, Clock, Search } from 'lucide-angular';
+import { provideRouter } from '@angular/router';
+import { CopCurrencyPipe } from './core/pipes/cop-currency/cop-currency-pipe';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [App, LucideAngularModule.pick({ RotateCcw, TrendingUp, History, Clock }), CopCurrencyPipe],
+      providers: [provideRouter([])]
     }).compileComponents();
   });
 
@@ -18,6 +22,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, fund-app');
+    expect(compiled.querySelector('p')?.textContent).toContain('BTG Pactual');
   });
 });

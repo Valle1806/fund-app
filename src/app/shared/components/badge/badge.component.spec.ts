@@ -1,23 +1,38 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { BadgeComponent } from './badge.component';
 
 describe('BadgeComponent', () => {
-  let component: BadgeComponent;
-  let fixture: ComponentFixture<BadgeComponent>;
+  it('debe renderizar el label correctamente', async () => {
+    await render(BadgeComponent, {
+      inputs: {
+        label: 'Test Label',
+        variant: 'success'
+      }
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BadgeComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(BadgeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    expect(screen.getByText('Test Label')).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('debe aplicar la clase de variante correcta', async () => {
+    await render(BadgeComponent, {
+      inputs: {
+        label: 'Success Badge',
+        variant: 'success'
+      }
+    });
+
+    const badgeElement = screen.getByText('Success Badge');
+    expect(badgeElement.classList.contains('btg-badge-success')).toBeTrue();
+  });
+
+  it('debe usar la variante neutral por defecto', async () => {
+    await render(BadgeComponent, {
+      inputs: {
+        label: 'Neutral Badge'
+      }
+    });
+
+    const badgeElement = screen.getByText('Neutral Badge');
+    expect(badgeElement.classList.contains('btg-badge-neutral')).toBeTrue();
   });
 });

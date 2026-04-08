@@ -1,23 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 import { SubscriptionFormComponent } from './subscription-form.component';
+import { FinanceFacade } from '../../../../core/facades/finance-facade/finance-facade';
+import { NotificationService } from '../../../../core/services/notification-message/notification-message';
+import { Fund, FundCategory } from '../../../../core/models/fund.model';
 
 describe('SubscriptionFormComponent', () => {
-  let component: SubscriptionFormComponent;
-  let fixture: ComponentFixture<SubscriptionFormComponent>;
+  const mockFund: Fund = {
+    id: 1,
+    name: 'DEUDA INTERNA',
+    category: FundCategory.FIC,
+    minimumAmount: 50000
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SubscriptionFormComponent]
-    })
-    .compileComponents();
+  const mockFacade = {
+    balance$: of(100000),
+    subscribe: jasmine.createSpy('subscribe')
+  };
 
-    fixture = TestBed.createComponent(SubscriptionFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  const mockNotificationService = {
+    notify: jasmine.createSpy('notify')
+  };
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('debe inicializar el formulario con el monto mínimo del fondo', async () => {
+    await render(SubscriptionFormComponent, {
+      imports: [ReactiveFormsModule],
+      providers: [
+        { provide: FinanceFacade, useValue: mockFacade },
+        { provide: NotificationService, useValue: mockNotificationService }
+      ],
+      inputs: {
+        fund: mockFund
+      }
+    });
+
+    const amountInput = screen.getByRole('spinbutton') as HTMLInputElement;
+    expect(Number(amountInput.value)).toBe(mockFund.minimumAmount);
   });
 });
