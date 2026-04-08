@@ -3,6 +3,14 @@
 Esta plataforma de gestión de fondos de inversión para **BTG Pactual** ha sido desarrollada bajo estándares de arquitectura limpia y reactividad avanzada, aprovechando las últimas capacidades de **Angular 20**.
 
 ---
+##  Stack Tecnológico
+
+* **Angular 20:** Arquitectura Standalone y el nuevo *Control Flow* (`@if`, `@for`).
+* **Tailwind CSS:** Design System escalable basado en variables de entorno y capas personalizadas (`@layer`).
+* **Lucide Angular:** Set de iconografía optimizado y cargado bajo demanda (*tree-shaking*).
+* **LocalStorage:** Motor de persistencia reactivo para mantener el estado de la cuenta.
+
+---
 
 ##  Arquitectura y Patrones
 
@@ -26,31 +34,9 @@ El proyecto aplica principios de organización LIFT (Locate, Identify, Flat, T-D
 
 ---
 
-##  Stack Tecnológico
-
-* **Angular 20:** Arquitectura Standalone y el nuevo *Control Flow* (`@if`, `@for`).
-* **Tailwind CSS:** Design System escalable basado en variables de entorno y capas personalizadas (`@layer`).
-* **Lucide Angular:** Set de iconografía optimizado y cargado bajo demanda (*tree-shaking*).
-* **LocalStorage Engine:** Motor de persistencia reactivo para mantener el estado de la cuenta.
-
----
-
-##  Requisitos de Negocio Implementados
-
-1.  **Balance Inicial:** Control de saldo inicial de **$500.000 COP**.
-2.  **Validación de Negocio:** Sistema de detección de saldo insuficiente antes de la vinculación (**Requisito 6**).
-3.  **Monto Mínimo:** Validación dinámica por fondo según sus reglas específicas de inversión.
-4.  **Notificaciones Globales:** Sistema de *Toasts* en español para feedback inmediato de todas las operaciones.
-5.  **Historial de Transacciones:** Registro persistente de cada apertura y cancelación de fondos.
-
----
-
-### Requisitos previos
-* **Node.js:** v20.19.2 (LTS) o superior
-* **Package Manager:** npm v10.x o superior
-
----
 ## Instalación y Uso
+
+Requisitos: Node.js v20.19+ y npm v10+
 
 Sigue estos pasos para ejecutar el proyecto localmente:
 
@@ -62,7 +48,7 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
    ```
 2. **Servidor de desarrollo:**
      ```bash
-   ng serve
+   ng start
    ```
 3. **Acceso:**
     El proyecto estará disponible en http://localhost:4200
@@ -79,6 +65,18 @@ npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
 ```
 
 ---
+## Requisitos implementados
+ 
+| # | Requisito | Vista |
+|---|-----------|-------|
+| 1 | Visualizar lista de fondos | Fondos |
+| 2 | Suscribirse con validación de monto mínimo | Fondos |
+| 3 | Cancelar suscripción y ver saldo actualizado | Fondos |
+| 4 | Historial de transacciones | Historial |
+| 5 | Seleccionar método de notificación (Email / SMS) | Modal de suscripción |
+| 6 | Mensajes de error por saldo insuficiente | Modal de suscripción |
+| 7 | Manejo adecuado de errores | APP en general |
+
 
 ## Capturas de funcionamiento
 
@@ -86,27 +84,18 @@ Lista de fondos:
 
 <img width="1918" height="993" alt="ListaFondos" src="https://github.com/user-attachments/assets/f13f0690-9be5-4e0d-9d9e-5666365e6314" />
 
-En esta vista se cumplen:
-* Visualizar la lista de fondos disponibles.
-* Suscribirse a un fondo, si cumple con el monto mínimo.
-* Cancelar la participación en un fondo, y ver el saldo actualizado.
 
 Formulario para subscribirte a un fondo: 
 
 <img width="1909" height="980" alt="formularioAplicacion" src="https://github.com/user-attachments/assets/137721d6-f796-4a86-a9fe-5053ac2baeb9" />
-
-En esta vista se cumplen: 
-* Seleccionar método de notificación (email o SMS) al realizar una suscripción.
-* Mostrar mensajes de error apropiados si no hay saldo suficiente.
 
     
 Historial de transacciones:
 
 <img width="1913" height="982" alt="HistorialTransacciones" src="https://github.com/user-attachments/assets/75df9148-bb69-42b6-a22a-172601a4ddf1" />
 
-En esta vista se cumple: 
-* Visualizar el historial de transacciones (suscripciones y cancelaciones).
-
+ 
+---
 
 ## Notas para el Evaluador
 * Botón de Reset: Se incluyó un acceso rápido en el Header (icono de reinicio) que limpia el localStorage y restablece el balance inicial. Esto permite repetir los flujos de prueba sin necesidad de limpiar manualmente los datos del navegador.
