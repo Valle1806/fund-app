@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from '../../../../shared/components/loading-spinner/loading-spinner.component';
 import { CopCurrencyPipe } from '../../../../core/pipes/cop-currency/cop-currency-pipe';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { NotificationService } from '../../../../core/services/notification-message/notification-message';
 /**
  * Componente de suscripción a fondos (Smart Component).
  *
@@ -35,6 +36,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class SubscriptionFormComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private facade = inject(FinanceFacade);
+  private notificationService = inject(NotificationService);
 
   fund = input.required<Fund>();
   onSuccess = output<void>();
@@ -72,7 +74,17 @@ export class SubscriptionFormComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (this.formGroup.valid && !this.isSending()) {
+    if (this.formGroup.invalid) {
+      if (this.amountControl?.hasError('insufficientBalance')) {
+        this.notificationService.notify(
+          `No tiene saldo suficiente para vincularse al fondo ${this.fund().name}`,
+          'error',
+        );
+      }
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+    if (!this.isSending()) {
       this.isSending.set(true);
 
       // Simulación de latencia de red/notificación
@@ -80,7 +92,7 @@ export class SubscriptionFormComponent implements OnInit {
 
       const { amount, method } = this.formGroup.value;
       this.facade.subscribe(this.fund(), amount!, method!);
-
+      this.notificationService.notify(`Se ha suscrito exitosamente al fondo ${this.fund().name}`, 'success');
       this.isSending.set(false);
       this.onSuccess.emit();
     }

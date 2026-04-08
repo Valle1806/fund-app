@@ -3,22 +3,26 @@ import { map, Observable } from 'rxjs';
 import { FinanceStore } from '../../store/finance-store/finance.store';
 import { NotificationMethod } from '../../models/transaction.model';
 import { Fund } from '../../models/fund.model';
+import { NotificationService } from '../../services/notification-message/notification-message';
+import { Router } from '@angular/router';
 /**
  * Este servicio aplica el patrón Facade para exponer de manera sencilla
  * las operaciones financieras de la aplicación y desacoplar los componentes
- * del FinanceStore.  
- * 
+ * del FinanceStore.
+ *
  * Permite acceder a observables como balance, portafolio e historial,
  * verificar si un fondo está activo, y ejecutar acciones como suscribirse
  * o cancelar fondos, sin que los componentes tengan que manejar directamente
- * la lógica interna del store.  
- * 
+ * la lógica interna del store.
+ *
  * De esta manera, centraliza la interacción con el estado financiero,
  * mantiene el código más limpio y facilita el mantenimiento.
  */
 @Injectable({ providedIn: 'root' })
 export class FinanceFacade {
   private store = inject(FinanceStore);
+  private notificationService = inject(NotificationService);
+  private router = inject(Router);
 
   // Observables para el consumo en componentes (Async Pipe)
   readonly balance$ = this.store.balance$;
@@ -28,7 +32,7 @@ export class FinanceFacade {
   // Verifica si un fondo ya está en el portafolio
   isFundActive$(fundId: number): Observable<boolean> {
     return this.portfolio$.pipe(
-      map(activeFunds => activeFunds.some(f => f.fund.id === fundId))
+      map((activeFunds) => activeFunds.some((f) => f.fund.id === fundId)),
     );
   }
 
@@ -38,5 +42,15 @@ export class FinanceFacade {
 
   cancel(fundId: number) {
     this.store.cancelFund(fundId);
+  }
+
+  public resetAccount(): void {
+    this.store.resetAll();
+    this.notificationService.notify(
+      'La cuenta ha sido restablecida a los valores iniciales.',
+      'info',
+    );
+
+    this.router.navigate(['/funds']);
   }
 }

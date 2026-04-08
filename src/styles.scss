@@ -151,6 +151,71 @@
     cursor: pointer;
   }
   .btg-nav-tab.active { color: var(--btg-cyan); }
+
+  .btg-toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 100;
+  }
+
+  @media (min-width: 640px) {
+    .btg-toast-container {
+      left: auto;
+      width: 380px;
+    }
+  }
+
+  .btg-toast {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--btg-navy-mid);
+    border: 1px solid var(--btg-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    animation: toast-slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btg-toast.success { border-left: 3px solid var(--btg-success); }
+  .btg-toast.error   { border-left: 3px solid var(--btg-danger); }
+  .btg-toast.info    { border-left: 3px solid var(--btg-blue); }
+
+  .btg-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-success { color: var(--btg-success); }
+  .icon-error   { color: var(--btg-danger); }
+  .icon-info    { color: var(--btg-blue); }
+
+  .btg-toast-message {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--btg-text);
+  }
+
+  .btg-toast-close {
+    background: transparent;
+    border: none;
+    color: var(--btg-text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .btg-toast-close:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--btg-text);
+  }
 }
 
   .btg-transaction-item {
@@ -199,3 +264,7 @@
   }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes toast-slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}

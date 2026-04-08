@@ -12,6 +12,11 @@
           Fondos de inversión
         </p>
       </div>
+      <button (click)="onReset()" 
+            class="p-2 rounded-lg hover:bg-white/5 transition-colors text-slate-400 hover:text-red-400">
+      <lucide-icon name="rotate-ccw" class="w-4 h-4"></lucide-icon> 
+      Reset
+    </button>
     </div>
     <!-- Saldo -->
     <div class="text-right">
@@ -34,7 +39,7 @@
   </main>
 
   <!-- Botones de navegación -->
-  <nav class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3"
+  <nav class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-2"
     style="background: var(--btg-navy-mid); border-top: 1px solid var(--btg-border);">
     @for (item of navItems; track item.route) {
       <a [routerLink]="item.route" routerLinkActive="active" class="btg-nav-tab">
@@ -44,3 +49,5 @@
     }
   </nav>
 </div>
+
+<btg-notification/>

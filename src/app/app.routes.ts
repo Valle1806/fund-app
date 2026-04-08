@@ -13,12 +13,6 @@ export const routes: Routes = [
     title: 'Fondos disponibles — BTG Fondos',
   },
   {
-    path: 'portfolio',
-    loadComponent: () =>
-      import('./features/portfolio/portfolio.page').then((m) => m.PortfolioPage),
-    title: 'Mi portafolio — BTG Fondos',
-  },
-  {
     path: 'transactions',
     loadComponent: () =>
       import('./features/transactions/transactions.page').then((m) => m.TransactionsPage),

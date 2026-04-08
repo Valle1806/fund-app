@@ -11,6 +11,7 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 import { FinanceFacade } from '../../core/facades/finance-facade/finance-facade';
 import { CancelConfirmationComponent } from './components/cancel-confirmation/cancel-confirmation.component';
+import { NotificationService } from '../../core/services/notification-message/notification-message';
 
 /**
  * Componente de la página de Fondos que permite al usuario explorar
@@ -91,6 +92,7 @@ import { CancelConfirmationComponent } from './components/cancel-confirmation/ca
 })
 export class FundsPage {
   private fundService = inject(FundService);
+  private notificationService = inject(NotificationService);
   public facade = inject(FinanceFacade);
 
   isLoading = signal(true);
@@ -114,6 +116,8 @@ export class FundsPage {
     if (fund) {
       this.facade.cancel(fund.id);
       this.onCloseModals();
+
+      this.notificationService.notify(`Se ha cancelado la suscripción al fondo ${fund.name}. El saldo ha sido devuelto a su cuenta`, 'success');
     }
   }
 
