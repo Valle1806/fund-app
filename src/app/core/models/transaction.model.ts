@@ -1,13 +1,17 @@
 /**
- * Tipos de transacción posibles en el sistema.
+ * Enum de transacción posibles en el sistema.
  */
-export type TransactionType = 'SUBSCRIPTION' | 'CANCELLATION';
-
+export enum TransactionType {
+  SUBSCRIPTION = 'SUBSCRIPTION',
+  CANCELLATION = 'CANCELLATION'
+}
 /**
  * Métodos de notificación disponibles al suscribirse a un fondo.
  */
-export type NotificationMethod = 'EMAIL' | 'SMS';
-
+export enum NotificationMethod {
+  EMAIL = 'EMAIL',
+  SMS = 'SMS'
+}
 /**
  * Representa una transacción registrada en el historial del usuario.
  */

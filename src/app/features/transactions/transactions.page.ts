@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-transactions',
+  selector: 'btg-transactions',
   imports: [],
   templateUrl: './transactions.page.html',
   styles: ``,

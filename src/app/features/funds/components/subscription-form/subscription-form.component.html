@@ -1,0 +1,60 @@
+@if (isSending()) {
+    <btg-loading-spinner message="Procesando su inversión..."></btg-loading-spinner>
+} @else {
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="space-y-5 animate-in fade-in">
+    
+    <div class="p-4 bg-[var(--btg-navy)] border border-[var(--btg-border)] rounded-xl">
+        <span class="text-[10px] text-[var(--btg-text-muted)] font-bold uppercase tracking-widest">Balance Disponible</span>
+        <p class="text-white text-lg font-black">{{ balance() | copCurrency }}</p>
+    </div>
+
+    <div class="space-y-2">
+        <label class="block text-xs font-bold text-[var(--btg-text-muted)] uppercase tracking-tight">Monto a suscribir</label>
+        <div class="relative">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--btg-text-muted)] font-bold">$</span>
+        <input 
+            type="number" 
+            formControlName="amount" 
+            class="btg-input pl-8 h-12"
+            [class.btg-input-error]="amountControl?.invalid && amountControl?.touched"
+            (keydown)="blockInvalidKeys($event)"
+        >
+        </div>
+        
+        @if (amountControl?.touched && amountControl?.errors) {
+        <div class="flex items-center gap-2 text-[10px] font-bold text-[var(--btg-danger)] px-1">
+            @if (amountControl?.errors?.['minAmount']) { 
+                <span>El monto mínimo es {{ amountControl?.errors?.['minAmount'].required | copCurrency }}</span> 
+            }
+            @if (amountControl?.errors?.['insufficient']) { <span>Saldo insuficiente</span> }
+            @if (amountControl?.errors?.['invalidNumber']) { <span>Solo números enteros</span> }
+        </div>
+        }
+    </div>
+
+    <div class="space-y-3">
+        <label class="block text-xs font-bold text-[var(--btg-text-muted)] uppercase">Notificar vía</label>
+        <div class="grid grid-cols-2 gap-3">
+        @for (method of methods; track method) {
+            <div 
+                (click)="methodControl?.setValue(method)"
+                class="btg-radio-card"
+                [class.selected]="methodControl?.value === method"
+            >
+            <div class="w-4 h-4 rounded-full border-2 border-[var(--btg-border)] flex items-center justify-center"
+                    [class.border-[var(--btg-blue)]]="methodControl?.value === method">
+                @if (methodControl?.value === method) {
+                    <div class="w-2 h-2 rounded-full bg-[var(--btg-blue)]"></div>
+                }
+            </div>
+            <span class="text-xs font-bold" [class.text-white]="methodControl?.value === method">{{ method }}</span>
+            </div>
+        }
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="formGroup.invalid" class="btg-btn btg-btn-primary btg-btn-full h-12 mt-2">
+        Confirmar Suscripción
+    </button>
+    </form>
+}

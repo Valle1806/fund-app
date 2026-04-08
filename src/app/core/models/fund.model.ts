@@ -3,7 +3,10 @@
  * FPV: Fondo de Pensión Voluntaria
  * FIC: Fondo de Inversión Colectiva
  */
-export type FundCategory = 'FPV' | 'FIC';
+export enum FundCategory {
+  FPV = 'FPV',
+  FIC = 'FIC'
+}
  
 /**
  * Representa un fondo de inversión disponible en el sistema.

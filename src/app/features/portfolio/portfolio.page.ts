@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-portfolio',
+  selector: 'btg-portfolio',
   imports: [],
   templateUrl: './portfolio.page.html',
   styles: ``,
