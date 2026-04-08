@@ -58,6 +58,7 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
 Lista de fondos:
 
 <img width="1918" height="993" alt="ListaFondos" src="https://github.com/user-attachments/assets/f13f0690-9be5-4e0d-9d9e-5666365e6314" />
+
 En esta vista se cumplen:
 * Visualizar la lista de fondos disponibles.
 * Suscribirse a un fondo, si cumple con el monto mínimo.
@@ -75,6 +76,7 @@ En esta vista se cumplen:
 Historial de transacciones:
 
 <img width="1913" height="982" alt="HistorialTransacciones" src="https://github.com/user-attachments/assets/75df9148-bb69-42b6-a22a-172601a4ddf1" />
+
 En esta vista se cumple: 
 * Visualizar el historial de transacciones (suscripciones y cancelaciones).
 
