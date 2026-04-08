@@ -1,23 +1,46 @@
-<div class="min-h-screen bg-slate-50">
-  
-  <nav class="bg-blue-900 text-white shadow-lg p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold tracking-tight">BTG Pactual | Fund App</h1>
-      
-      <div class="bg-blue-800 px-4 py-2 rounded-lg border border-blue-700">
-        <span class="text-xs block text-blue-200 uppercase font-semibold">Saldo Disponible</span>
-        <span class="text-lg font-mono font-bold">
-          {{ 50000 | currency:'COP':'symbol-narrow':'1.0-0' }}
-        </span>
+<div class="min-h-screen flex flex-col" style="background: var(--btg-navy)">
+  <header class="sticky top-0 z-40 px-4 py-3 flex items-center justify-between"
+    style="background: var(--btg-navy-mid); border-bottom: 1px solid var(--btg-border);">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-black text-xs text-white"
+        style="background: var(--btg-blue)">
+        BTG
+      </div>
+      <div>
+        <p class="text-xs font-bold" style="color: var(--btg-text)">BTG Pactual</p>
+        <p class="text-[10px] mt-0.5" style="color: var(--btg-text-muted)">
+          Fondos de inversión
+        </p>
       </div>
     </div>
-  </nav>
+    <!-- Saldo -->
+    <div class="text-right">
+      <p class="text-[10px]" style="color: var(--btg-text-muted)">Saldo disponible</p>
+      <p class="text-sm font-bold" style="color: var(--btg-cyan)">
+        {{ 50000 | currency:'COP':'symbol-narrow':'1.0-0' }}
+      </p>
+    </div>
+  </header>
 
-  <main class="container mx-auto py-8 px-4">
-    <router-outlet></router-outlet>
+  <main class="flex-1 overflow-y-auto px-4 py-6 pb-24">
+    <router-outlet />
+    <footer class="w-full py-12 border-t mt-auto flex justify-center items-center text-center"
+      style="background: var(--btg-navy-dark); border-color: var(--btg-border);">
+      <p class="text-slate-500 text-xs">
+        &copy; 2026 BTG Pactual Fund Management - Prueba Técnica
+      </p>
+    </footer>
+
   </main>
 
-  <footer class="text-center py-6 text-slate-400 text-sm">
-    &copy; 2026 BTG Pactual Fund Management - Prueba Técnica
-  </footer>
+  <!-- Botones de navegación -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3"
+    style="background: var(--btg-navy-mid); border-top: 1px solid var(--btg-border);">
+    @for (item of navItems; track item.route) {
+      <a [routerLink]="item.route" routerLinkActive="active" class="btg-nav-tab">
+        <lucide-icon [name]="item.icon" class="w-5 h-5 mb-1"></lucide-icon>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
 </div>

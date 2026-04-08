@@ -1,4 +1,201 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --btg-navy:       #0a1628;
+    --btg-navy-mid:   #112240;
+    --btg-navy-light: #1a3a5c;
+    --btg-blue:       #1e5fa8;
+    --btg-blue-hover: #2d7dd2;
+    --btg-cyan:       #00b4d8;
+    --btg-fic:        #6c63ff;
+    --btg-fpv:        #22c55e;
+    --btg-danger:     #ef4444;
+    --btg-success:    #22c55e;
+    --btg-warning:    #f59e0b;
+    --btg-text:       #f1f5f9;
+    --btg-text-muted: #94a3b8;
+    --btg-border:     rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--btg-navy);
+    color: var(--btg-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar       { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--btg-navy); }
+  ::-webkit-scrollbar-thumb { background: var(--btg-navy-light); border-radius: 99px; }
+}
+
+@layer components {
+  .btg-card {
+    background: var(--btg-navy-mid);
+    border: 1px solid var(--btg-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+  }
+
+  .btg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  .btg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btg-btn-primary  { background: var(--btg-blue); color: #fff; }
+  .btg-btn-primary:hover:not(:disabled) { background: var(--btg-blue-hover); }
+  .btg-btn-ghost    { background: transparent; color: var(--btg-text-muted); border: 1px solid var(--btg-border); }
+  .btg-btn-ghost:hover:not(:disabled) { background: var(--btg-navy-light); color: var(--btg-text); }
+  .btg-btn-danger   { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .btg-btn-danger:hover:not(:disabled) { background: rgba(239,68,68,0.25); }
+  .btg-btn-sm       { padding: 0.4rem 0.9rem; font-size: 0.8rem; }
+  .btg-btn-full     { width: 100%; }
+
+ 
+  .btg-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .btg-badge-fic     { background: rgba(108,99,255,0.2); color: #a5b4fc; border: 1px solid rgba(108,99,255,0.3); }
+  .btg-badge-fpv     { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.25); }
+  .btg-badge-success { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.25); }
+  .btg-badge-danger  { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+  .btg-badge-neutral { background: rgba(100,116,139,0.2); color: var(--btg-text-muted); border: 1px solid var(--btg-border); }
+
+  .btg-input {
+    width: 100%;
+    padding: 0.6rem 0.875rem;
+    background: var(--btg-navy);
+    border: 1px solid var(--btg-border);
+    border-radius: 10px;
+    color: var(--btg-text);
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    outline: none;
+  }
+  .btg-input:focus       { border-color: var(--btg-blue); }
+  .btg-input::placeholder { color: var(--btg-text-muted); }
+  .btg-input-error       { border-color: var(--btg-danger) !important; }
+
+
+  .btg-radio-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: var(--btg-navy);
+    border: 1px solid var(--btg-border);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .btg-radio-card:hover    { border-color: var(--btg-blue); }
+  .btg-radio-card.selected { border-color: var(--btg-blue); background: rgba(30,95,168,0.12); }
+
+  .btg-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+  }
+  .btg-alert-success { background: rgba(34,197,94,0.1);  border-color: rgba(34,197,94,0.25);  color: #86efac; }
+  .btg-alert-error   { background: rgba(239,68,68,0.1);  border-color: rgba(239,68,68,0.25);  color: #fca5a5; }
+  .btg-alert-warning { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25); color: #fcd34d; }
+  .btg-alert-info    { background: rgba(0,180,216,0.1);  border-color: rgba(0,180,216,0.25);  color: #67e8f9; }
+
+
+  .btg-spinner {
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--btg-blue-hover);
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+
+
+  .btg-divider { border: none; border-top: 1px solid var(--btg-border); margin: 0.75rem 0; }
+
+
+  .btg-nav-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem;
+    color: var(--btg-text-muted);
+    font-size: 0.65rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .btg-nav-tab.active { color: var(--btg-cyan); }
+}
+
+  .btg-transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--btg-border);
+  }
+  .btg-transaction-item:last-child { border-bottom: none; }
+
+  .btg-transaction-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+
+  .btg-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+  @media (min-width: 640px) {
+    .btg-modal-overlay { align-items: center; }
+  }
+
+  .btg-modal-panel {
+    background: var(--btg-navy-mid);
+    border: 1px solid var(--btg-border);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 28rem;
+    padding: 1.5rem;
+  }
+
+@keyframes spin { to { transform: rotate(360deg); } }
