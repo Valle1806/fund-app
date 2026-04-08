@@ -43,7 +43,7 @@ export class FinanceValidators {
   static positiveInteger(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
-      if (!value) return null;
+      if (value === null || value === undefined || value === '') return null;
       
       const isInteger = Number.isInteger(value);
       const isPositive = value > 0;
