@@ -51,6 +51,10 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
    ```
 3. **Acceso:**
     El proyecto estará disponible en http://localhost:4200
+## Capturas de funcionamiento
+
+<img width="1918" height="993" alt="ListaFondos" src="https://github.com/user-attachments/assets/f13f0690-9be5-4e0d-9d9e-5666365e6314" />
+<img width="1913" height="982" alt="HistorialTransacciones" src="https://github.com/user-attachments/assets/75df9148-bb69-42b6-a22a-172601a4ddf1" />
 
 ## Notas para el Evaluador
 * Botón de Reset: Se incluyó un acceso rápido en el Header (icono de reinicio) que limpia el localStorage y restablece el balance inicial. Esto permite repetir los flujos de prueba sin necesidad de limpiar manualmente los datos del navegador.
