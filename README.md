@@ -80,17 +80,18 @@ npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
 
 ## Capturas de funcionamiento
 
-Lista de fondos:
+Vista Fondos:
 
 <img width="1918" height="993" alt="ListaFondos" src="https://github.com/user-attachments/assets/f13f0690-9be5-4e0d-9d9e-5666365e6314" />
 
 
-Formulario para subscribirte a un fondo: 
+
+Modal de suscripción: 
 
 <img width="1909" height="980" alt="formularioAplicacion" src="https://github.com/user-attachments/assets/137721d6-f796-4a86-a9fe-5053ac2baeb9" />
 
     
-Historial de transacciones:
+Vista Historial: 
 
 <img width="1913" height="982" alt="HistorialTransacciones" src="https://github.com/user-attachments/assets/75df9148-bb69-42b6-a22a-172601a4ddf1" />
 
