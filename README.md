@@ -51,10 +51,33 @@ Clonar el repositorio git clone https://github.com/Valle1806/fund-app.git
    ```
 3. **Acceso:**
     El proyecto estará disponible en http://localhost:4200
+
+   
 ## Capturas de funcionamiento
 
+Lista de fondos:
+
 <img width="1918" height="993" alt="ListaFondos" src="https://github.com/user-attachments/assets/f13f0690-9be5-4e0d-9d9e-5666365e6314" />
+En esta vista se cumplen:
+* Visualizar la lista de fondos disponibles.
+* Suscribirse a un fondo, si cumple con el monto mínimo.
+* Cancelar la participación en un fondo, y ver el saldo actualizado.
+
+Formulario para subscribirte a un fondo: 
+
+<img width="1909" height="980" alt="formularioAplicacion" src="https://github.com/user-attachments/assets/137721d6-f796-4a86-a9fe-5053ac2baeb9" />
+
+En esta vista se cumplen: 
+* Seleccionar método de notificación (email o SMS) al realizar una suscripción.
+* Mostrar mensajes de error apropiados si no hay saldo suficiente.
+
+    
+Historial de transacciones:
+
 <img width="1913" height="982" alt="HistorialTransacciones" src="https://github.com/user-attachments/assets/75df9148-bb69-42b6-a22a-172601a4ddf1" />
+En esta vista se cumple: 
+* Visualizar el historial de transacciones (suscripciones y cancelaciones).
+
 
 ## Notas para el Evaluador
 * Botón de Reset: Se incluyó un acceso rápido en el Header (icono de reinicio) que limpia el localStorage y restablece el balance inicial. Esto permite repetir los flujos de prueba sin necesidad de limpiar manualmente los datos del navegador.
