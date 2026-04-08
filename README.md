@@ -4,7 +4,7 @@ Esta plataforma de gestión de fondos de inversión para **BTG Pactual** ha sido
 
 ---
 
-##  Arquitectura y Patrones (Senior Level)
+##  Arquitectura y Patrones
 
 El proyecto destaca por una implementación híbrida que demuestra versatilidad técnica y adaptabilidad:
 
