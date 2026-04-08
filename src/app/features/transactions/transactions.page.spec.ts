@@ -3,8 +3,9 @@ import { of } from 'rxjs';
 import { TransactionsPage } from './transactions.page';
 import { FinanceFacade } from '../../core/facades/finance-facade/finance-facade';
 import { Transaction, TransactionType, NotificationMethod } from '../../core/models/transaction.model';
-import { LucideAngularModule, Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare } from 'lucide-angular';
+import { LucideAngularModule, Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare, TrendingUp } from 'lucide-angular';
 import { CopCurrencyPipe } from '../../core/pipes/cop-currency/cop-currency-pipe';
+import { provideRouter } from '@angular/router';
 
 describe('TransactionsPage', () => {
   const mockTransactions: Transaction[] = [
@@ -36,10 +37,11 @@ describe('TransactionsPage', () => {
     await render(TransactionsPage, {
       imports: [
         CopCurrencyPipe,
-        LucideAngularModule.pick({ Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare })
+        LucideAngularModule.pick({ Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare, TrendingUp })
       ],
       providers: [
-        { provide: FinanceFacade, useValue: mockFacade }
+        { provide: FinanceFacade, useValue: mockFacade },
+        provideRouter([])
       ]
     });
 
@@ -47,9 +49,10 @@ describe('TransactionsPage', () => {
     expect(screen.getByText('ACCIONES LATAM')).toBeTruthy();
     expect(screen.getByText(/50/)).toBeTruthy();
     expect(screen.getByText(/30/)).toBeTruthy();
+    expect(screen.getByText(/Fondos/i)).toBeTruthy();
   });
 
-  it('debe mostrar el estado vacío si no hay transacciones', async () => {
+  it('debe mostrar el estado vacío y el botón de comenzar si no hay transacciones', async () => {
     const mockFacadeEmpty = {
       history$: of([])
     };
@@ -57,14 +60,15 @@ describe('TransactionsPage', () => {
     await render(TransactionsPage, {
       imports: [
         CopCurrencyPipe,
-        LucideAngularModule.pick({ Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare })
+        LucideAngularModule.pick({ Clock, Search, Mailbox, ArrowUpRight, ArrowDownLeft, Mail, MessageSquare, TrendingUp })
       ],
       providers: [
-        { provide: FinanceFacade, useValue: mockFacadeEmpty }
+        { provide: FinanceFacade, useValue: mockFacadeEmpty },
+        provideRouter([])
       ]
     });
 
     expect(screen.getByText('Sin movimientos')).toBeTruthy();
-    expect(screen.getByText(/Aquí verás el registro de tus inversiones/)).toBeTruthy();
+    expect(screen.getByText(/¡Comenzar a Invertir!/i)).toBeTruthy();
   });
 });
